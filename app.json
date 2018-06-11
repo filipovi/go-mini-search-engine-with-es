@@ -1,0 +1,8 @@
+{
+  "name": "mini-search-engine",
+  "description": "Search user in Elasticsearch.",
+  "image": "heroku/go:1.10",
+  "mount_dir": "src/github.com/filipovi/mini-search-engine",
+  "website": "https://github.com/filipovi/mini-search-engine",
+  "repository": "https://github.com/filipovi/mini-search-engine"
+}
