@@ -22,7 +22,7 @@ type User struct {
 
 // Populate adds X user to ES
 func (client Client) Populate(number int) error {
-	tableName := "usersgo"
+	tableName := "users"
 	idxExists, err := client.IndexExists(tableName).Do(context.Background())
 	if err != nil {
 		return err
@@ -55,7 +55,7 @@ func (client Client) Populate(number int) error {
 func (client Client) NewSearchQuery(term string, from, size int) ([]*User, error) {
 	q := elastic.NewMultiMatchQuery(term, "username", "email", "real_name").Fuzziness("AUTO:2,5")
 
-	res, err := client.Search().Index("usersgo").Query(q).From(from).Size(size).Do(context.Background())
+	res, err := client.Search().Index("users").Query(q).From(from).Size(size).Do(context.Background())
 	if err != nil {
 		return nil, err
 	}

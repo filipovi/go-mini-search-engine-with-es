@@ -35,7 +35,7 @@ func (env *Env) handleHomeRequest(w http.ResponseWriter, req *http.Request) {
 
 func (env *Env) handleSearchRequest(w http.ResponseWriter, req *http.Request) {
 	term := pat.Param(req, "term")
-	res, err := env.client.NewSearchQuery(term, 1, 100)
+	res, err := env.client.NewSearchQuery(term, 0, 20)
 	if err != nil {
 		log.Printf("ERROR: [Request] %s", err)
 		send([]byte(err.Error()), "text/plain", http.StatusBadRequest, w)
