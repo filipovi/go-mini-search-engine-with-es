@@ -6,11 +6,11 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strconv"
 	"time"
 
-	"github.com/filipovi/elastic/config"
-	"github.com/filipovi/elastic/elastic"
+	"github.com/filipovi/elastic"
 	"github.com/phyber/negroni-gzip/gzip"
 	"github.com/rs/cors"
 	"github.com/urfave/negroni"
@@ -81,8 +81,12 @@ func failOnError(err error, msg string) {
 	panic(fmt.Sprintf("%s: %s", msg, err))
 }
 
-func connect(cfg config.Config) (*Env, error) {
-	elastic, err := elastic.New(cfg.Elastic.URL)
+func connect(file string) (*Env, error) {
+	path, err := filepath.Abs(file)
+	if err != nil {
+		log.Fatal(err)
+	}
+	elastic, err := elastic.New(path)
 	if nil != err {
 		return nil, err
 	}
@@ -96,10 +100,7 @@ func connect(cfg config.Config) (*Env, error) {
 }
 
 func main() {
-	cfg, err := config.New("config.json")
-	failOnError(err, "Failed to read config.json")
-
-	env, err := connect(cfg)
+	env, err := connect("config.json")
 	failOnError(err, "Failed to connect to ES")
 
 	n := negroni.Classic()
