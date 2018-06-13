@@ -9,6 +9,15 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/filipovi/elastic"
+  packages = [
+    ".",
+    "config"
+  ]
+  revision = "3afae6824cf6a1924e5f4d185e3fa992c228e92b"
+
+[[projects]]
+  branch = "master"
   name = "github.com/icrowley/fake"
   packages = ["."]
   revision = "4178557ae428460c3780a381c824a1f3aceb6325"
@@ -72,6 +81,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "e963dc0d9af796ea5cc423c8712b859ec900597fad9ef04bdf89cefd6e7300bf"
+  inputs-digest = "df9d7be362dd76bfe82f7a9836df29b451f3ce741d0e26c3055b3c2be97e9fbe"
   solver-name = "gps-cdcl"
   solver-version = 1
